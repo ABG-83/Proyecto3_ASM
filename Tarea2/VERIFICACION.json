@@ -1,0 +1,26 @@
+{
+  "firmware": "Banco_Completo V1",
+  "compiled": true,
+  "uploaded_COM4": true,
+  "flash_hash_verified": true,
+  "math_tests_pass": [
+    "inverse_error",
+    "underspeed_releases",
+    "upper_saturation",
+    "conditional_antiwindup",
+    "no_reference_derivative_kick",
+    "reversed_servo_mapping",
+    "servo_clamping"
+  ],
+  "boot_motor_pwm": 0,
+  "boot_servo_pulse_us": 0,
+  "physical_brake_calibrated": false,
+  "pid_tuned": false,
+  "real_step_measured": false,
+  "matlab_script_executed": false,
+  "source_sha256": {
+    "Banco_Completo.ino": "8c9334f8441d17f15cd382f087c67cbb8b61ab9deca9d4b0f3ecde90896db362",
+    "Banco.h": "7e32fc0aade1dc88c1afe6aac42c7839322cc623896f82f692947e3c972a89d4",
+    "ControlCore.h": "9ff503d743004389ae6334a47250d035910296de58bd6d46282f679900619cb7"
+  }
+}

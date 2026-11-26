@@ -2,3 +2,15 @@ build/
 *.bin
 *.elf
 *.map
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+*.synctex.gz
+
+# MATLAB
+*.asv

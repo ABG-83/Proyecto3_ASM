@@ -9,15 +9,16 @@ El banco hace girar una rueda con un motor DC y la frena con una zapata movida p
 ## Estructura del repositorio
 
 ```
-Tarea2/
-├── Banco_Completo/          Firmware principal del banco (ESP32-S3)
-│   ├── Banco_Completo.ino
-│   ├── Banco.h              Periféricos, máquina de estados, comandos serie
-│   └── ControlCore.h        PID discreto y pruebas internas (SELFTEST)
+Proyecto3/                   Proyecto Grupal 2 (ver Proyecto3/README.md)
+Tarea2/                      Tarea 2: modelado y código base
+├── Banco_Completo.ino       Firmware de pruebas del banco (ESP32-S3)
+├── Banco.h                  Periféricos, máquina de estados, comandos serie
+├── ControlCore.h            PID discreto y pruebas internas (SELFTEST)
 ├── pid_frenado/
 │   └── pid_frenado.ino      Código base mostrado en el documento de la Tarea 2 (Pregunta 3)
 ├── capturar.py              Captura por puerto serie a CSV
 ├── analizar_escalon.m       Identificación del modelo a partir del escalón (MATLAB)
+├── MATLAB_Ensayo_Real.m     Datos y gráficas del primer ensayo real
 └── VERIFICACION.json        Estado de las pruebas del firmware
 ```
 
@@ -35,7 +36,7 @@ Tarea2/
 1. Arduino IDE con el paquete **esp32 de Espressif, versión 3.x**.
 2. Placa: **ESP32S3 Dev Module**.
 3. En *Herramientas*: **USB Mode = Hardware CDC and JTAG** y **USB CDC On Boot = Enabled**. Si no, el código no compila a propósito.
-4. Abrir `Tarea2/Banco_Completo/Banco_Completo.ino` y cargar.
+4. Abrir `Tarea2/Banco_Completo.ino`. El IDE pide crear una carpeta `Banco_Completo` y mover el archivo: aceptar, copiar también `Banco.h` y `ControlCore.h` a esa carpeta, y cargar.
 
 Al encender, el motor queda en PWM 0 y el servo sin pulsos: el banco nunca se mueve solo.
 

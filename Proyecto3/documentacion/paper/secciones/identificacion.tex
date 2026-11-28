@@ -2,4 +2,46 @@
 % Ensayos, modelo con condiciones de validez, validacion con datos nuevos,
 % polos y ceros, frecuencia de muestreo justificada.
 \section{Identificaci\'on del modelo}
-% TODO (B)
+
+% Condiciones de cada escalón y resolución de la medición.
+El protocolo contempla dos velocidades iniciales y tres niveles de
+frenado normalizado $u\in[0,1]$ por velocidad. En cada ensayo a lazo
+abierto se corta la alimentaci\'on del motor, se observa la
+desaceleraci\'on libre y se aplica un escal\'on de frenado. El registro
+conserva el tiempo, la orden $u$, la velocidad angular $\omega$ y
+los eventos del ensayo. El periodo nominal del lazo es de
+$20\,\mathrm{ms}$, igual al periodo del PWM del servo. La resoluci\'on
+efectiva de la velocidad depende del tiempo entre marcas del disco.
+El ajuste usa \'unicamente mediciones nuevas y compara la velocidad
+registrada con el promedio predicho en cada intervalo entre marcas.
+
+% La transferencia describe el aporte del freno respecto a la caída libre.
+Para cada velocidad inicial se ajusta por m\'inimos cuadrados el modelo
+incremental
+\begin{equation}
+  G(s)=\frac{\Delta\Omega(s)}{\Delta U(s)}
+       =-\frac{K e^{-Ls}}{\tau s+1},
+  \label{eq:planta-frenado}
+\end{equation}
+donde $K$ es la magnitud de la ganancia, $\tau$ es la constante de
+tiempo y $L$ es el retardo efectivo. El signo negativo representa la
+reducci\'on de velocidad al aumentar el frenado. El modelo tiene un
+polo en $-1/\tau$ y carece de ceros finitos. Se estima una pendiente
+com\'un de desaceleraci\'on libre para las capturas de cada velocidad
+inicial y se ajusta una velocidad de partida por ensayo. Las ca\'idas
+estimadas por nivel permiten buscar indicios de zona muerta y
+saturaci\'on. El retardo estimado incluye el efecto de la resoluci\'on
+temporal de la medici\'on.
+
+% Las repeticiones reservadas se usan solo para evaluar las predicciones.
+La validaci\'on conserva los par\'ametros identificados y fija la
+velocidad de partida de cada repetici\'on con los datos previos a
+aplicar el freno. Las predicciones se comparan con las mediciones
+posteriores al escal\'on mediante el error absoluto medio (MAE) y la
+ra\'iz del error cuadr\'atico medio (RMSE). La comparaci\'on se limita
+al rango de frenado ensayado, con el motor apagado y el disco a\'un
+en giro.
+
+% Completar con parámetros, métricas y curvas al disponer de capturas reales.
+La estimaci\'on experimental de los par\'ametros y su validaci\'on
+quedan pendientes de las mediciones del banco.

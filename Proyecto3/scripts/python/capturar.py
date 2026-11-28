@@ -7,11 +7,11 @@ import queue
 import threading
 import time
 
-ENCABEZADO = 't_ms,modo,ref,w,e,u,pwm,nueva'.split(',')
+from leer_ensayo import ENCABEZADO
 
 
 def guardar_linea(linea, salida, encabezado_recibido):
-    # Los eventos se conservan en el CSV como comentarios para MATLAB.
+    # Los eventos se conservan en el CSV como comentarios para el análisis.
     if linea.startswith('#'):
         salida.write(linea + '\n')
     elif linea.startswith('t_ms,'):

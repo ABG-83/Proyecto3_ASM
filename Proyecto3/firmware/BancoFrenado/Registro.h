@@ -2,7 +2,7 @@
 // Registro.h — Salida CSV de cada muestra
 // Responsable: Integrante B
 //
-// Este formato lo consumen capturar.py y todos los scripts de MATLAB.
+// Este formato lo consumen capturar.py y leer_ensayo.py.
 // Si se cambia una columna, avisar al grupo y actualizar los scripts.
 //
 // Columnas (una fila por periodo de control):

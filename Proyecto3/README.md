@@ -19,11 +19,10 @@ Proyecto3/
 │   ├── Control.h               PID digital con anti-windup            → C
 │   └── Ensayos.h               Máquina de estados y comandos serie    → D
 ├── scripts/
-│   ├── python/capturar.py      Captura del puerto serie a CSV         → B
+│   ├── python/
+│   │   ├── capturar.py         Captura del puerto serie a CSV         → B
+│   │   └── leer_ensayo.py      Lector común de CSV                    → B
 │   └── matlab/
-│       ├── leer_ensayo.m       Lector común de CSV                    → B
-│       ├── identificar_modelo.m  Ajuste del modelo                    → B
-│       ├── validar_modelo.m    Validación con datos nuevos            → B
 │       ├── disenar_controlador.m Diseño en Laplace y Z                → C
 │       ├── metricas.m          IAE, RMSE, tiempo de frenado...        → D
 │       └── comparar_ensayos.m  Lazo abierto contra PID                → D
@@ -72,6 +71,8 @@ del lazo de control.
 
 Desde `Proyecto3`, con `pyserial` instalado, iniciar la captura con
 `python scripts/python/capturar.py --port COM4 --salida datos/identificacion/oa_u050_w120_r1.csv`.
-La captura conserva también un TXT con el intercambio serie. En MATLAB,
-`[T, eventos] = leer_ensayo(archivo)` carga las muestras, añade `T.t` en
-segundos y devuelve los comentarios.
+La captura conserva también un TXT con el intercambio serie. En Python,
+`from leer_ensayo import leer_ensayo` permite cargar el registro desde los
+scripts de `scripts/python`. La llamada `muestras, eventos = leer_ensayo(archivo)`
+devuelve las filas con sus tipos numéricos, el campo `t` en segundos y los
+comentarios del registro. El ajuste y la validación del modelo se harán en Python.

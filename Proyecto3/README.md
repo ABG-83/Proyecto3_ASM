@@ -21,7 +21,8 @@ Proyecto3/
 ├── scripts/
 │   ├── python/
 │   │   ├── capturar.py         Captura del puerto serie a CSV         → B
-│   │   └── leer_ensayo.py      Lector común de CSV                    → B
+│   │   ├── leer_ensayo.py      Lector común de CSV                    → B
+│   │   └── identificar_modelo.py Ajuste del modelo de la planta        → B
 │   └── matlab/
 │       ├── disenar_controlador.m Diseño en Laplace y Z                → C
 │       ├── metricas.m          IAE, RMSE, tiempo de frenado...        → D
@@ -75,4 +76,5 @@ La captura conserva también un TXT con el intercambio serie. En Python,
 `from leer_ensayo import leer_ensayo` permite cargar el registro desde los
 scripts de `scripts/python`. La llamada `muestras, eventos = leer_ensayo(archivo)`
 devuelve las filas con sus tipos numéricos, el campo `t` en segundos y los
-comentarios del registro. El ajuste y la validación del modelo se harán en Python.
+comentarios del registro. El procedimiento de ajuste en Python está en
+[`datos/README.md`](datos/README.md).

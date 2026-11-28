@@ -76,3 +76,22 @@ sin reemplazar el primer modelo, indicar un archivo diferente con
 estimada por nivel. Comparar esas caídas para buscar indicios de zona
 muerta o saturación. Con pocos niveles, los umbrales quedan por determinar.
 El estado del modelo se guarda como pendiente de validación.
+
+## Validación con capturas nuevas
+
+Capturar las repeticiones en `datos/validacion/` con `capturar.py` y
+agregarlas a `condiciones_ensayos.csv` con esa ruta. Para cada modelo,
+ejecutar desde `Proyecto3`:
+
+```text
+python scripts/python/validar_modelo.py --modelo scripts/python/modelo_planta.json --salida datos/validacion/informe_w120.json
+```
+
+El script selecciona ensayos de la misma consigna inicial y comprueba que
+sus órdenes de frenado estén dentro del rango ajustado. Usa las marcas
+previas al escalón para fijar el nivel inicial de cada predicción. Conserva
+la ganancia, la constante de tiempo, el retardo y la deriva del ajuste
+original. El informe incluye velocidad medida y predicha, RMSE y MAE por
+ensayo y RMSE conjunto. Los tiempos de las series son los puntos medios
+de los intervalos del sensor, relativos a la aplicación del freno.
+Revisar las series y sus errores antes de declarar válido el modelo.

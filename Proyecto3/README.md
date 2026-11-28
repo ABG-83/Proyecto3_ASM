@@ -22,7 +22,8 @@ Proyecto3/
 │   ├── python/
 │   │   ├── capturar.py         Captura del puerto serie a CSV         → B
 │   │   ├── leer_ensayo.py      Lector común de CSV                    → B
-│   │   └── identificar_modelo.py Ajuste del modelo de la planta        → B
+│   │   ├── identificar_modelo.py Ajuste del modelo de la planta        → B
+│   │   └── validar_modelo.py  Validación con capturas independientes → B
 │   └── matlab/
 │       ├── disenar_controlador.m Diseño en Laplace y Z                → C
 │       ├── metricas.m          IAE, RMSE, tiempo de frenado...        → D

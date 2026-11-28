@@ -125,15 +125,15 @@ def ajustar(ensayos):
     }
 
 
-def identificar(datos, velocidad):
-    # Selecciona un punto de operación y limita las fuentes a identificación.
+def cargar_ensayos(datos, grupo, velocidad):
+    """Selecciona una sola carpeta de capturas y una velocidad inicial."""
     ensayos = []
     archivos = []
-    raiz = (datos / "identificacion").resolve()
+    raiz = (datos / grupo).resolve()
     with (datos / "condiciones_ensayos.csv").open(encoding="utf-8-sig", newline="") as entrada:
         for fila in csv.DictReader(entrada):
             relativa = Path(fila["archivo"])
-            if not relativa.parts or relativa.parts[0] != "identificacion":
+            if not relativa.parts or relativa.parts[0] != grupo:
                 continue
             if float(fila["w_objetivo_rpm"]) != velocidad:
                 continue
@@ -142,9 +142,15 @@ def identificar(datos, velocidad):
                 continue
             archivo = (datos / relativa).resolve()
             if not archivo.is_relative_to(raiz) or archivo in archivos:
-                raise ValueError(f"Ruta fuera de identificación o duplicada: {relativa}")
+                raise ValueError(f"Ruta fuera de {grupo} o duplicada: {relativa}")
             ensayos.append(preparar_ensayo(archivo, nivel))
             archivos.append(archivo)
+    return ensayos, [archivo.relative_to(datos.resolve()).as_posix() for archivo in archivos]
+
+
+def identificar(datos, velocidad):
+    # Mantiene las capturas de validación fuera del ajuste.
+    ensayos, archivos = cargar_ensayos(datos, "identificacion", velocidad)
     if len({ensayo[3] for ensayo in ensayos}) < 3:
         raise ValueError(f"Se requieren tres niveles de identificación para {velocidad:g} rpm")
 
@@ -153,7 +159,7 @@ def identificar(datos, velocidad):
         "w_objetivo_rpm": velocidad,
         "u_min": min(ensayo[3] for ensayo in ensayos),
         "u_max": max(ensayo[3] for ensayo in ensayos),
-        "archivos": [archivo.relative_to(datos.resolve()).as_posix() for archivo in archivos],
+        "archivos": archivos,
         "motor_durante_frenado": "apagado",
         "validado": False,
     }

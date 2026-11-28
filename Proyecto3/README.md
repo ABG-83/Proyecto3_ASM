@@ -52,3 +52,26 @@ Proyecto3/
 ## Compilar el firmware
 
 Arduino IDE con el paquete esp32 de Espressif 3.x, placa **ESP32S3 Dev Module**, y abrir `firmware/BancoFrenado/BancoFrenado.ino`. El código de la Tarea 2 (`../Tarea2/Banco.h`) sirve de referencia para portar las partes que ya funcionan.
+
+## Formato del registro de ensayos
+
+El puerto serie usa 115200 baudios. Cada CSV contiene un solo ensayo y
+comienza con `t_ms,modo,ref,w,e,u,pwm,nueva`, precedido opcionalmente por
+comentarios. Cada fila registra el tiempo real desde el inicio del ensayo en
+milisegundos, el modo `OA` o `PID`, la referencia, la velocidad y el error
+`w - ref` en rad/s, la acción de frenado entre 0 y 1 y el PWM del motor.
+En `OA` se registra una referencia de 0. `nueva` vale 1 cuando el sensor
+ha actualizado la velocidad y 0 cuando el valor sigue retenido.
+
+Las líneas con `#` conservan el estado y los eventos en el mismo archivo.
+Para un evento con tiempo de ensayo, usar `# EVENT t_ms=<ms> <nombre>`,
+por ejemplo al cortar el motor o cambiar la acción de frenado. El registro
+devuelve `false` si no pudo enviar una línea. El código del ensayo puede
+reintentar el encabezado antes de empezar el muestreo, sin esperar dentro
+del lazo de control.
+
+Desde `Proyecto3`, con `pyserial` instalado, iniciar la captura con
+`python scripts/python/capturar.py --port COM4 --salida datos/identificacion/oa_u050_w120_r1.csv`.
+La captura conserva también un TXT con el intercambio serie. En MATLAB,
+`[T, eventos] = leer_ensayo(archivo)` carga las muestras, añade `T.t` en
+segundos y devuelve los comentarios.

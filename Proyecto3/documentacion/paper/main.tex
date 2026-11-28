@@ -1,0 +1,40 @@
+% =============================================================================
+% Paper del Proyecto Grupal 2 (CE-1110) - formato IEEE, maximo 4 paginas
+% con referencias incluidas. Cada quien escribe SOLO su archivo de secciones/.
+% Prohibido poner codigo fuente: usar pseudocodigo o diagramas.
+% =============================================================================
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{url}
+\graphicspath{{figuras/}}
+
+\begin{document}
+
+\title{Control PID digital de un banco de frenado}
+
+\author{
+\IEEEauthorblockN{Aldo Alessandro Bagliano G\'omez, Jos\'e Pablo Fern\'andez Rojas,\\
+Jos\'e Andr\'es Solano Mora y Joan Jes\'us Ugalde Z\'arate}
+\IEEEauthorblockA{Escuela de Ingenier\'ia en Computadores, Instituto Tecnol\'ogico de Costa Rica}
+}
+
+\maketitle
+
+\input{secciones/abstract}        % Todos (al final)
+\input{secciones/introduccion}    % Todos
+\input{secciones/marco_teorico}   % A, B, C y D: un parrafo cada uno
+\input{secciones/planta}          % Integrante A
+\input{secciones/identificacion}  % Integrante B
+\input{secciones/controlador}     % Integrante C
+\input{secciones/experimentos}    % Integrante D
+\input{secciones/conclusiones}    % Todos
+
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}
